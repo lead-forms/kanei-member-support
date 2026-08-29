@@ -1,0 +1,2974 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <title>FOCUS | 運営お問い合わせフォーム</title>
+
+  <meta
+    name="description"
+    content="FOCUS参加者向けの運営お問い合わせフォームです。"
+  />
+
+  <meta name="theme-color" content="#111111" />
+
+  <style>
+
+    :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --text:#0d0d0f;
+      --muted:#77777f;
+      --line:rgba(15,15,18,.10);
+
+      --accent:#6f63dc;
+      --accent-deep:#4f49a8;
+      --accent-soft:rgba(111,99,220,.08);
+
+      --dark:#09090c;
+      --dark-2:#19191f;
+
+      --danger:#dc2626;
+
+      --shadow:
+        0 18px 42px rgba(18,18,24,.07);
+
+      --shadow-soft:
+        0 10px 30px rgba(18,18,24,.045);
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html,
+    body{
+      margin:0;
+      padding:0;
+
+      width:100%;
+      max-width:100%;
+
+      overflow-x:hidden;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Yu Gothic",
+        YuGothic,
+        Meiryo,
+        sans-serif;
+
+      color:var(--text);
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(111,99,220,.045),
+          transparent 28%
+        ),
+        #ffffff;
+
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
+
+    body{
+      min-height:100vh;
+    }
+
+    .page{
+      min-height:100dvh;
+
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+    }
+
+
+    /* ==================================================
+       HEADER
+    ================================================== */
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+
+      -webkit-backdrop-filter:blur(18px);
+      backdrop-filter:blur(18px);
+
+      background:rgba(255,255,255,.91);
+
+      border-bottom:
+        1px solid rgba(15,15,18,.075);
+    }
+
+    .header-inner{
+      width:100%;
+      max-width:920px;
+
+      margin:0 auto;
+      padding:14px 18px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      gap:12px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+
+      min-width:0;
+    }
+
+    .brand-mark{
+      position:relative;
+
+      width:42px;
+      height:42px;
+      flex:0 0 42px;
+
+      display:grid;
+      place-items:center;
+
+      overflow:hidden;
+
+      color:#ffffff;
+
+      background:
+        radial-gradient(
+          circle at 20% 0%,
+          rgba(139,128,237,.30),
+          transparent 46%
+        ),
+        linear-gradient(
+          145deg,
+          #08080a,
+          #1a1a22
+        );
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+
+      box-shadow:
+        0 10px 24px rgba(0,0,0,.14),
+        0 0 18px rgba(111,99,220,.10);
+    }
+
+    .brand-mark:after{
+      content:"";
+
+      position:absolute;
+      inset:5px;
+
+      border:
+        1px solid rgba(255,255,255,.10);
+
+      pointer-events:none;
+    }
+
+    .brand-name{
+      color:#111116;
+
+      line-height:1.35;
+
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.01em;
+    }
+
+    .brand-license{
+      display:block;
+
+      margin-top:3px;
+
+      color:rgba(0,0,0,.38);
+
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+
+    .pill-note{
+      position:relative;
+
+      flex:0 0 auto;
+
+      padding:
+        7px
+        12px
+        7px
+        22px;
+
+      color:#4d478e;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(111,99,220,.055),
+          rgba(111,99,220,.11)
+        );
+
+      border:
+        1px solid rgba(111,99,220,.18);
+
+      white-space:nowrap;
+
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .pill-note:before{
+      content:"";
+
+      position:absolute;
+
+      top:50%;
+      left:10px;
+
+      width:5px;
+      height:5px;
+
+      border-radius:50%;
+
+      background:#786ee1;
+
+      box-shadow:
+        0 0 10px rgba(120,110,225,.55);
+
+      transform:translateY(-50%);
+    }
+
+
+    /* ==================================================
+       CONTAINER
+    ================================================== */
+
+    .container{
+      width:100%;
+      max-width:920px;
+
+      margin:0 auto 28px;
+
+      padding:
+        42px
+        4vw
+        0;
+    }
+
+    @media (min-width:920px){
+      .container{
+        padding-left:18px;
+        padding-right:18px;
+      }
+    }
+
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
+    .hero{
+      position:relative;
+
+      overflow:hidden;
+
+      padding:
+        38px
+        30px
+        34px;
+
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(111,99,220,.10),
+          transparent 36%
+        ),
+        linear-gradient(
+          145deg,
+          #ffffff 0%,
+          #ffffff 68%,
+          #f8f8fb 100%
+        );
+
+      border:
+        1px solid rgba(15,15,18,.10);
+
+      box-shadow:
+        0 18px 42px rgba(18,18,24,.06);
+    }
+
+    .hero:before{
+      content:"";
+
+      position:absolute;
+
+      top:0;
+      left:0;
+
+      width:100%;
+      height:3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #1b1b1f 0%,
+          #434a9d 35%,
+          #7770d3 60%,
+          rgba(119,112,211,0) 100%
+        );
+    }
+
+    .hero:after{
+      content:"";
+
+      position:absolute;
+
+      width:250px;
+      height:250px;
+
+      right:-108px;
+      top:-118px;
+
+      border-radius:50%;
+
+      border:
+        1px solid rgba(111,99,220,.08);
+
+      box-shadow:
+        0 0 0 32px rgba(111,99,220,.025),
+        0 0 0 64px rgba(111,99,220,.015);
+
+      pointer-events:none;
+    }
+
+    .hero-head{
+      position:relative;
+      z-index:1;
+
+      display:flex;
+      flex-direction:column;
+
+      gap:7px;
+    }
+
+    .hero .meta{
+      position:relative;
+
+      display:inline-flex;
+      align-items:center;
+
+      width:fit-content;
+      max-width:100%;
+
+      padding:
+        7px
+        13px
+        7px
+        25px;
+
+      color:#4e478e;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(111,99,220,.06),
+          rgba(111,99,220,.12)
+        );
+
+      border:
+        1px solid rgba(111,99,220,.17);
+
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.06em;
+    }
+
+    .hero .meta:before{
+      content:"";
+
+      position:absolute;
+
+      left:11px;
+      top:50%;
+
+      width:5px;
+      height:5px;
+
+      border-radius:50%;
+
+      background:#7b70df;
+
+      box-shadow:
+        0 0 10px rgba(123,112,223,.5);
+
+      transform:translateY(-50%);
+    }
+
+    .hero h1{
+      max-width:680px;
+
+      margin:
+        13px
+        0
+        11px;
+
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+      font-size:
+        clamp(30px,4.4vw,46px);
+
+      font-weight:700;
+
+      line-height:1.28;
+      letter-spacing:-.045em;
+    }
+
+    .hero p{
+      position:relative;
+
+      max-width:700px;
+
+      margin:0;
+
+      padding-top:16px;
+
+      color:rgba(13,13,15,.52);
+
+      font-size:13px;
+      font-weight:500;
+
+      line-height:1.9;
+    }
+
+    .hero p:before{
+      content:"";
+
+      position:absolute;
+
+      top:0;
+      left:0;
+
+      width:86px;
+      height:1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #6f63dc,
+          rgba(111,99,220,0)
+        );
+    }
+
+
+    /* ==================================================
+       FORM
+    ================================================== */
+
+    form{
+      position:relative;
+
+      margin-top:24px;
+      padding:0;
+
+      overflow:hidden;
+
+      background:#ffffff;
+
+      border:
+        1px solid rgba(15,15,18,.10);
+
+      box-shadow:
+        0 22px 54px rgba(18,18,24,.065);
+    }
+
+    form:before{
+      content:"";
+
+      position:absolute;
+
+      top:0;
+      left:0;
+
+      width:100%;
+      height:1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(111,99,220,.80),
+          rgba(111,99,220,.15),
+          transparent
+        );
+    }
+
+    .section{
+      position:relative;
+
+      padding:
+        28px
+        26px
+        18px;
+
+      border-top:
+        1px solid rgba(15,15,18,.075);
+    }
+
+    .section:first-child{
+      border-top:none;
+    }
+
+    .section:before{
+      content:"";
+
+      position:absolute;
+
+      top:-1px;
+      left:26px;
+
+      width:42px;
+      height:1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7369cd,
+          rgba(115,105,205,0)
+        );
+    }
+
+    .section:first-child:before{
+      display:none;
+    }
+
+
+    /* ==================================================
+       SECTION TITLE
+    ================================================== */
+
+    .section-title{
+      position:relative;
+
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      flex-wrap:wrap;
+
+      margin:
+        0
+        0
+        20px;
+
+      padding-bottom:13px;
+
+      color:#111116;
+
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+      font-size:19px;
+      font-weight:700;
+
+      letter-spacing:-.025em;
+    }
+
+    .section-title:after{
+      content:"";
+
+      position:absolute;
+
+      bottom:0;
+      left:0;
+
+      width:100%;
+      height:1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(15,15,18,.25),
+          rgba(15,15,18,.055)
+        );
+    }
+
+    .req{
+      padding:4px 7px;
+
+      color:#ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dc2626,
+          #b91c1c
+        );
+
+      box-shadow:
+        0 4px 12px rgba(220,38,38,.16);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        sans-serif;
+
+      font-size:8px;
+      font-weight:900;
+      letter-spacing:.10em;
+    }
+
+    .optional{
+      padding:3px 7px;
+
+      color:rgba(0,0,0,.42);
+
+      background:
+        rgba(15,15,18,.035);
+
+      border:
+        1px solid rgba(15,15,18,.075);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        sans-serif;
+
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.06em;
+    }
+
+
+    /* ==================================================
+       CARDS
+    ================================================== */
+
+    .operation-card{
+      position:relative;
+
+      margin-bottom:5px;
+
+      padding:
+        21px
+        20px
+        21px
+        23px;
+
+      overflow:hidden;
+
+      color:rgba(255,255,255,.72);
+
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(111,99,220,.22),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          #08080a,
+          #19191f
+        );
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
+      font-size:12px;
+      line-height:1.9;
+
+      box-shadow:
+        0 15px 32px rgba(0,0,0,.10);
+    }
+
+    .operation-card:before{
+      content:"";
+
+      position:absolute;
+
+      top:0;
+      left:0;
+
+      width:3px;
+      height:100%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #8b80ed,
+          rgba(139,128,237,.20)
+        );
+    }
+
+    .operation-card strong{
+      color:#ffffff;
+      font-weight:800;
+    }
+
+    .operation-card-title{
+      margin-bottom:9px;
+
+      color:#ffffff;
+
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.02em;
+    }
+
+    .important-card{
+      position:relative;
+
+      margin-bottom:18px;
+
+      padding:
+        15px
+        16px
+        15px
+        19px;
+
+      color:#44444b;
+
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(111,99,220,.09),
+          transparent 45%
+        ),
+        linear-gradient(
+          145deg,
+          #fafafd,
+          #f6f6fa
+        );
+
+      border:
+        1px solid rgba(111,99,220,.11);
+
+      border-left:
+        3px solid #6f63dc;
+
+      font-size:11.5px;
+      line-height:1.75;
+    }
+
+
+    /* ==================================================
+       FIELD
+    ================================================== */
+
+    .field{
+      display:grid;
+      gap:8px;
+
+      min-width:0;
+
+      margin-bottom:18px;
+    }
+
+    .field:last-child{
+      margin-bottom:0;
+    }
+
+    .inline-label{
+      display:block;
+
+      margin:0 0 5px;
+
+      color:#27272c;
+
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.015em;
+    }
+
+    .field-description{
+      margin:-2px 0 6px;
+
+      color:rgba(0,0,0,.42);
+
+      font-size:11px;
+      line-height:1.65;
+    }
+
+    input[type="text"],
+    select,
+    textarea{
+      width:100%;
+      max-width:100%;
+
+      padding:13px 14px;
+
+      color:var(--text);
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #fdfdfe
+        );
+
+      border:
+        1px solid rgba(15,15,18,.12);
+
+      border-radius:2px;
+
+      outline:none;
+
+      font-family:inherit;
+      font-size:16px;
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.85);
+
+      transition:
+        border .22s ease,
+        box-shadow .22s ease,
+        background .22s ease;
+    }
+
+    textarea{
+      min-height:120px;
+
+      resize:vertical;
+
+      line-height:1.75;
+    }
+
+    .textarea-large{
+      min-height:180px;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+      color:rgba(0,0,0,.29);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:
+        rgba(111,99,220,.58);
+
+      box-shadow:
+        0 0 0 3px rgba(111,99,220,.075),
+        0 9px 22px rgba(70,60,170,.045);
+
+      background:#ffffff;
+    }
+
+
+    /* ==================================================
+       CHOICES
+    ================================================== */
+
+    .choices{
+      display:grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:9px;
+    }
+
+    @media (min-width:720px){
+      .choices{
+        grid-template-columns:
+          repeat(3,minmax(0,1fr));
+      }
+    }
+
+    .choice-item{
+      position:relative;
+
+      display:flex;
+      align-items:center;
+
+      gap:9px;
+
+      min-width:0;
+      min-height:54px;
+
+      padding:11px 12px;
+
+      overflow:hidden;
+
+      color:#25252a;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #fafafd
+        );
+
+      border:
+        1px solid rgba(15,15,18,.10);
+
+      border-radius:2px;
+
+      line-height:1.45;
+
+      font-size:12px;
+      font-weight:650;
+
+      cursor:pointer;
+
+      box-shadow:
+        0 8px 20px rgba(18,18,24,.035);
+
+      transition:
+        border .2s ease,
+        background .2s ease,
+        transform .12s ease,
+        box-shadow .2s ease;
+    }
+
+    .choice-item:after{
+      content:"";
+
+      position:absolute;
+
+      left:0;
+      bottom:0;
+
+      width:100%;
+      height:1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7369cd,
+          rgba(115,105,205,0)
+        );
+
+      transform:scaleX(0);
+      transform-origin:left center;
+
+      transition:transform .3s ease;
+    }
+
+    .choice-item:hover{
+      border-color:
+        rgba(111,99,220,.25);
+
+      background:#ffffff;
+
+      box-shadow:
+        0 10px 24px rgba(18,18,24,.055);
+    }
+
+    .choice-item:hover:after{
+      transform:scaleX(1);
+    }
+
+    .choice-item:active{
+      transform:translateY(1px);
+    }
+
+    input[type="radio"]{
+      width:17px;
+      height:17px;
+
+      flex:0 0 17px;
+
+      accent-color:#6258c6;
+    }
+
+
+    /* ==================================================
+       URGENCY
+    ================================================== */
+
+    .urgency-normal{
+      border-left:
+        2px solid rgba(111,99,220,.25);
+    }
+
+    .urgency-fast{
+      border-left:
+        2px solid #d69b28;
+    }
+
+    .urgency-high{
+      border-left:
+        2px solid #dc2626;
+    }
+
+
+    /* ==================================================
+       TROUBLE SECTION
+    ================================================== */
+
+    .conditional-section{
+      display:none;
+    }
+
+    .conditional-section.active{
+      display:block;
+    }
+
+    .trouble-notice{
+      position:relative;
+
+      margin-bottom:18px;
+
+      padding:
+        16px
+        17px
+        16px
+        20px;
+
+      color:#44444b;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fbfaff,
+          #f7f6fc
+        );
+
+      border:
+        1px solid rgba(111,99,220,.13);
+
+      border-left:
+        3px solid #6f63dc;
+
+      font-size:11.5px;
+      line-height:1.8;
+    }
+
+
+    /* ==================================================
+       ERROR
+    ================================================== */
+
+    .error{
+      display:none;
+
+      margin-top:10px;
+
+      padding-left:10px;
+
+      color:var(--danger);
+
+      border-left:
+        2px solid var(--danger);
+
+      font-size:11px;
+      font-weight:700;
+      line-height:1.6;
+    }
+
+
+    /* ==================================================
+       ACTIONS
+    ================================================== */
+
+    .actions{
+      position:relative;
+
+      display:grid;
+
+      gap:11px;
+
+      padding:
+        25px
+        26px
+        29px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff,
+          #fafafd
+        );
+
+      border-top:
+        1px solid rgba(15,15,18,.075);
+    }
+
+    .btn{
+      width:100%;
+
+      padding:16px;
+
+      border:none;
+      border-radius:0;
+
+      font-family:inherit;
+
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.03em;
+
+      cursor:pointer;
+
+      transition:
+        transform .12s ease,
+        opacity .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .btn-primary{
+      position:relative;
+
+      overflow:hidden;
+
+      color:#ffffff;
+
+      background:
+        radial-gradient(
+          circle at 20% 0%,
+          rgba(139,128,237,.25),
+          transparent 40%
+        ),
+        linear-gradient(
+          135deg,
+          #09090c 0%,
+          #191922 55%,
+          #09090b 100%
+        );
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
+      box-shadow:
+        0 16px 30px rgba(0,0,0,.16),
+        0 0 22px rgba(111,99,220,.08);
+    }
+
+    .btn-primary:before{
+      content:"";
+
+      position:absolute;
+
+      top:-70%;
+      left:-30%;
+
+      width:18%;
+      height:240%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.24),
+          transparent
+        );
+
+      transform:rotate(18deg);
+
+      animation:
+        buttonShine
+        4.8s
+        ease-in-out
+        infinite;
+    }
+
+    @keyframes buttonShine{
+
+      0%,
+      58%{
+        left:-30%;
+        opacity:0;
+      }
+
+      66%{
+        opacity:1;
+      }
+
+      84%,
+      100%{
+        left:120%;
+        opacity:0;
+      }
+    }
+
+    .btn-primary:disabled{
+      cursor:not-allowed;
+      opacity:.55;
+    }
+
+    .hint{
+      color:rgba(0,0,0,.42);
+
+      font-size:11px;
+      line-height:1.6;
+    }
+
+
+    /* ==================================================
+       THANK YOU
+    ================================================== */
+
+    .thankyou-stage{
+      min-height:62vh;
+
+      display:none;
+
+      justify-content:center;
+      align-items:flex-start;
+
+      padding-top:10px;
+    }
+
+    .thankyou{
+      position:relative;
+
+      width:100%;
+
+      margin-top:10px;
+
+      padding:
+        44px
+        24px
+        36px;
+
+      overflow:hidden;
+
+      text-align:center;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(111,99,220,.09),
+          transparent 35%
+        ),
+        #ffffff;
+
+      border:
+        1px solid rgba(15,15,18,.10);
+
+      box-shadow:
+        0 22px 52px rgba(18,18,24,.07);
+    }
+
+    .thankyou:before{
+      content:"";
+
+      position:absolute;
+
+      top:0;
+      left:0;
+
+      width:100%;
+      height:3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #1b1b1f,
+          #7770d3,
+          rgba(119,112,211,0)
+        );
+    }
+
+    .done-badge{
+      position:relative;
+
+      width:58px;
+      height:58px;
+
+      margin:
+        0
+        auto
+        15px;
+
+      display:grid;
+      place-items:center;
+
+      color:#ffffff;
+
+      background:
+        radial-gradient(
+          circle at 20% 0%,
+          rgba(139,128,237,.30),
+          transparent 45%
+        ),
+        linear-gradient(
+          145deg,
+          #08080a,
+          #1b1b24
+        );
+
+      border:
+        1px solid rgba(111,99,220,.28);
+
+      border-radius:50%;
+
+      box-shadow:
+        0 14px 28px rgba(0,0,0,.15),
+        0 0 22px rgba(111,99,220,.12);
+    }
+
+    .done-kicker{
+      margin-bottom:7px;
+
+      color:#665cc4;
+
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.14em;
+    }
+
+    .thankyou h2{
+      margin:
+        0
+        0
+        13px;
+
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+      font-size:
+        clamp(25px,3.6vw,34px);
+
+      font-weight:700;
+
+      letter-spacing:-.035em;
+    }
+
+    .thankyou-secondary{
+      margin:0;
+
+      color:rgba(0,0,0,.48);
+
+      font-size:12px;
+      line-height:1.85;
+    }
+
+
+    /* ==================================================
+       FOOTER
+    ================================================== */
+
+    footer{
+      padding:
+        10px
+        18px
+        26px;
+
+      color:var(--muted);
+
+      text-align:center;
+
+      font-size:10px;
+    }
+
+
+    /* ==================================================
+       MOBILE
+    ================================================== */
+
+    @media (max-width:560px){
+
+      .header-inner{
+        padding:11px 12px;
+        gap:8px;
+      }
+
+      .brand{
+        gap:8px;
+      }
+
+      .brand-mark{
+        width:38px;
+        height:38px;
+
+        flex-basis:38px;
+
+        font-size:9px;
+      }
+
+      .brand-name{
+        max-width:160px;
+
+        font-size:11px;
+      }
+
+      .brand-license{
+        font-size:8px;
+      }
+
+      .pill-note{
+        padding:
+          6px
+          8px
+          6px
+          18px;
+
+        font-size:8px;
+      }
+
+      .pill-note:before{
+        left:8px;
+
+        width:4px;
+        height:4px;
+      }
+
+      .container{
+        padding:
+          28px
+          10px
+          0;
+      }
+
+      .hero{
+        padding:
+          28px
+          18px
+          25px;
+      }
+
+      .hero .meta{
+        font-size:9px;
+      }
+
+      .hero h1{
+        margin-top:12px;
+
+        font-size:
+          clamp(27px,8vw,35px);
+
+        line-height:1.31;
+      }
+
+      .hero p{
+        font-size:12px;
+        line-height:1.85;
+      }
+
+      form{
+        margin-top:18px;
+      }
+
+      .section{
+        padding:
+          24px
+          15px
+          14px;
+      }
+
+      .section:before{
+        left:15px;
+      }
+
+      .section-title{
+        margin-bottom:18px;
+
+        font-size:18px;
+      }
+
+      .actions{
+        padding:
+          21px
+          15px
+          23px;
+      }
+
+      .choices{
+        grid-template-columns:
+          1fr 1fr;
+
+        gap:7px;
+      }
+
+      .choice-item{
+        min-height:55px;
+
+        padding:10px 9px;
+
+        gap:7px;
+
+        font-size:11px;
+      }
+
+      input[type="radio"]{
+        width:16px;
+        height:16px;
+
+        flex-basis:16px;
+      }
+
+    }
+
+
+    @media (max-width:390px){
+
+      .brand-name{
+        max-width:125px;
+
+        font-size:10px;
+      }
+
+      .pill-note{
+        font-size:7.5px;
+      }
+
+      .choices{
+        grid-template-columns:1fr;
+      }
+
+      .choice-item{
+        min-height:49px;
+      }
+
+    }
+
+
+    @media (prefers-reduced-motion:reduce){
+
+      .btn-primary:before{
+        animation:none;
+      }
+
+      *,
+      *:before,
+      *:after{
+        scroll-behavior:auto !important;
+        transition:none !important;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+  <!-- ==================================================
+       HEADER
+  ================================================== -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <div class="brand">
+
+        <div class="brand-mark">
+          FOCUS
+        </div>
+
+        <div>
+
+          <div class="brand-name">
+            FOCUS
+          </div>
+
+          <span class="brand-license">
+            MEMBER SUPPORT
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="pill-note">
+        運営窓口
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+
+    <!-- ==================================================
+         HERO
+    ================================================== -->
+
+    <section
+      class="hero"
+      id="heroSection"
+    >
+
+      <div class="hero-head">
+
+        <span class="meta">
+          FOCUS MEMBER SUPPORT
+        </span>
+
+        <h1>運営お問い合わせフォーム</h1>
+
+        <p>
+          FOCUSの運営・コミュニティに関するお問い合わせはこちらからお送りください。
+          ご要望や改善してほしいこと、ご不満、メンバー間での問題、その他の運営上のご相談を受け付けています。
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         THANK YOU
+    ================================================== -->
+
+    <div
+      class="thankyou-stage"
+      id="thankYouStage"
+    >
+
+      <div style="width:100%;">
+
+        <section class="thankyou">
+
+          <div
+            class="done-badge"
+            aria-hidden="true"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              width="27"
+              height="27"
+            >
+
+              <path
+                fill="#ffffff"
+                d="M9 16.2l-3.5-3.5a1 1 0 0 1 1.4-1.4l2.8 2.8 7.3-7.3a1 1 0 1 1 1.4 1.4l-8 8a1 1 0 0 1-1.4 0z"
+              />
+
+            </svg>
+
+          </div>
+
+          <div class="done-kicker">
+            RECEIVED
+          </div>
+
+          <h2>
+            送信を受け付けました。
+          </h2>
+
+          <p class="thankyou-secondary">
+            FOCUS運営チームへお問い合わせ内容を送信しました。<br>
+            内容を確認のうえ、必要に応じて対応いたします。
+          </p>
+
+        </section>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         FORM
+    ================================================== -->
+
+    <form
+      id="supportForm"
+      novalidate
+    >
+
+
+      <!-- ==================================================
+           IMPORTANT
+      ================================================== -->
+
+      <div class="section">
+
+        <div class="section-title">
+          運営に関するご連絡について
+        </div>
+
+
+        <div class="operation-card">
+
+          <div class="operation-card-title">
+            FOCUS運営窓口
+          </div>
+
+          FOCUSでは、運営上のご連絡を適切に管理・対応するため、
+          <strong>
+            運営に関するお問い合わせはこちらのフォームに集約しています。
+          </strong>
+
+          <br><br>
+
+          「こうしてほしい」「ここを改善してほしい」といったご要望から、
+          ご不満、メンバー間での問題、ルール違反の報告、
+          サービス・コンテンツに関するお問い合わせ、
+          決済・契約・退会、その他の運営上のご相談まで、
+          こちらからお送りください。
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           PROFILE
+      ================================================== -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          あなたについて
+
+          <span class="req">
+            必須
+          </span>
+
+        </div>
+
+
+        <div class="field">
+
+          <label
+            class="inline-label"
+            for="profileName"
+          >
+            Discordのプロフィール名
+          </label>
+
+          <div class="field-description">
+            運営側で確認できるDiscord上の表示名をご入力ください。
+          </div>
+
+          <input
+            id="profileName"
+            name="profileName"
+            type="text"
+            autocomplete="nickname"
+            placeholder="例：カネイ"
+            required
+          />
+
+        </div>
+
+
+        <div
+          class="error"
+          data-error-for="profile"
+        >
+          Discordのプロフィール名を入力してください。
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           TYPE
+      ================================================== -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          お問い合わせの種類
+
+          <span class="req">
+            必須
+          </span>
+
+        </div>
+
+
+        <div class="important-card">
+          最も近いものを1つ選択してください。
+        </div>
+
+
+        <div class="choices">
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="運営への要望・改善提案"
+            />
+
+            運営への要望・改善提案
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="サービス・コンテンツについて"
+            />
+
+            サービス・コンテンツについて
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="Discord・コミュニティについて"
+            />
+
+            Discord・コミュニティについて
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="他のメンバーとのトラブル・相談"
+            />
+
+            他のメンバーとのトラブル・相談
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="迷惑行為・ルール違反の報告"
+            />
+
+            迷惑行為・ルール違反の報告
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="LIVE SESSION・イベントについて"
+            />
+
+            LIVE SESSION・イベントについて
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="決済・契約・退会について"
+            />
+
+            決済・契約・退会について
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="不具合・技術的な問題"
+            />
+
+            不具合・技術的な問題
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="inquiryType"
+              value="その他"
+            />
+
+            その他
+
+          </label>
+
+        </div>
+
+
+        <div
+          class="error"
+          data-error-for="inquiryType"
+        >
+          お問い合わせの種類を選択してください。
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           CONTENT
+      ================================================== -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          お問い合わせ内容
+
+          <span class="req">
+            必須
+          </span>
+
+        </div>
+
+
+        <div class="field">
+
+          <label
+            class="inline-label"
+            for="content"
+          >
+            具体的な内容を教えてください
+          </label>
+
+          <div class="field-description">
+            状況やご要望など、運営が内容を把握できるようできるだけ具体的にご記入ください。
+          </div>
+
+          <textarea
+            id="content"
+            name="content"
+            class="textarea-large"
+            placeholder="お問い合わせ内容をご記入ください。"
+            required
+          ></textarea>
+
+        </div>
+
+
+        <div
+          class="error"
+          data-error-for="content"
+        >
+          お問い合わせ内容を入力してください。
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           TROUBLE ONLY
+      ================================================== -->
+
+      <div
+        class="conditional-section"
+        id="troubleSection"
+      >
+
+        <div class="section">
+
+          <div class="section-title">
+            メンバーに関する状況
+          </div>
+
+
+          <div class="trouble-notice">
+            メンバー間のトラブル・迷惑行為・ルール違反については、
+            状況確認のため、分かる範囲で以下をご記入ください。
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="inline-label"
+              for="relatedMember"
+            >
+              関係するメンバーのDiscord名
+            </label>
+
+            <div class="field-description">
+              相手のDiscord上の表示名が分かる場合にご記入ください。
+            </div>
+
+            <input
+              id="relatedMember"
+              name="relatedMember"
+              type="text"
+              placeholder="例：〇〇"
+            />
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="inline-label"
+              for="incidentPlace"
+            >
+              いつ頃・どこで起きましたか？
+            </label>
+
+            <div class="field-description">
+              Discordのチャンネル名、DM、LIVE SESSIONなど、分かる範囲でご記入ください。
+            </div>
+
+            <textarea
+              id="incidentPlace"
+              name="incidentPlace"
+              placeholder="例：8月28日の夜頃、Discordの〇〇チャンネルで起きました。"
+            ></textarea>
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="inline-label"
+              for="evidence"
+            >
+              スクリーンショット・証拠など
+            </label>
+
+            <div class="field-description">
+              画像等がある場合は、確認できるURLや保存先などをご記入ください。ない場合は空欄で構いません。
+            </div>
+
+            <textarea
+              id="evidence"
+              name="evidence"
+              placeholder="確認できるURLなどがあればご記入ください。"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           DESIRED ACTION
+      ================================================== -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          希望する対応
+
+          <span class="optional">
+            任意
+          </span>
+
+        </div>
+
+
+        <div class="field">
+
+          <label
+            class="inline-label"
+            for="desiredAction"
+          >
+            運営にどのような対応を希望しますか？
+          </label>
+
+          <div class="field-description">
+            ご希望がある場合のみご記入ください。対応内容を確約するものではありませんが、運営判断の参考にさせていただきます。
+          </div>
+
+          <textarea
+            id="desiredAction"
+            name="desiredAction"
+            placeholder="例：一度状況を確認してほしい / 今後〇〇を改善してほしい など"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           URGENCY
+      ================================================== -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          確認の優先度
+
+          <span class="req">
+            必須
+          </span>
+
+        </div>
+
+
+        <div class="choices">
+
+          <label class="choice-item urgency-normal">
+
+            <input
+              type="radio"
+              name="urgency"
+              value="通常"
+              checked
+            />
+
+            通常
+
+          </label>
+
+
+          <label class="choice-item urgency-fast">
+
+            <input
+              type="radio"
+              name="urgency"
+              value="できれば早めに確認してほしい"
+            />
+
+            できれば早めに確認してほしい
+
+          </label>
+
+
+          <label class="choice-item urgency-high">
+
+            <input
+              type="radio"
+              name="urgency"
+              value="緊急性が高い"
+            />
+
+            緊急性が高い
+
+          </label>
+
+        </div>
+
+
+        <div
+          class="error"
+          data-error-for="urgency"
+        >
+          確認の優先度を選択してください。
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           REPLY
+      ================================================== -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          運営からの返信
+
+          <span class="req">
+            必須
+          </span>
+
+        </div>
+
+
+        <div class="choices">
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="replyRequired"
+              value="返信を希望する"
+            />
+
+            返信を希望する
+
+          </label>
+
+
+          <label class="choice-item">
+
+            <input
+              type="radio"
+              name="replyRequired"
+              value="報告のみ・返信不要"
+            />
+
+            報告のみ・返信不要
+
+          </label>
+
+        </div>
+
+
+        <div
+          class="error"
+          data-error-for="replyRequired"
+        >
+          返信の希望を選択してください。
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           SUBMIT
+      ================================================== -->
+
+      <div class="actions">
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >
+          運営へ送信
+        </button>
+
+        <div
+          id="formMsg"
+          class="hint"
+        ></div>
+
+      </div>
+
+
+    </form>
+
+  </main>
+
+
+  <footer>
+    FOCUS
+  </footer>
+
+
+</div>
+
+
+<script>
+
+(() => {
+
+
+  /* ==================================================
+     CONFIG
+
+     Cloudflare Worker作成後、
+     API_URLだけWorker URLへ変更してください。
+
+     例：
+     https://focus-support.xxxxx.workers.dev
+  ================================================== */
+
+  const CONFIG = {
+
+    API_URL:
+      "YOUR_CLOUDFLARE_WORKER_URL"
+
+  };
+
+
+  /* ==================================================
+     ELEMENTS
+  ================================================== */
+
+  const form =
+    document.getElementById(
+      "supportForm"
+    );
+
+  const hero =
+    document.getElementById(
+      "heroSection"
+    );
+
+  const thankYouStage =
+    document.getElementById(
+      "thankYouStage"
+    );
+
+  const troubleSection =
+    document.getElementById(
+      "troubleSection"
+    );
+
+  const msg =
+    document.getElementById(
+      "formMsg"
+    );
+
+
+  let isSubmitting = false;
+
+
+  /* ==================================================
+     HELPERS
+  ================================================== */
+
+  const getRadioValue = name => {
+
+    const element =
+      document.querySelector(
+        `input[name="${name}"]:checked`
+      );
+
+    return element
+      ? element.value
+      : "";
+
+  };
+
+
+  const showError = (
+    name,
+    visible
+  ) => {
+
+    const element =
+      document.querySelector(
+        `[data-error-for="${name}"]`
+      );
+
+    if(!element){
+      return;
+    }
+
+    element.style.display =
+      visible
+        ? "block"
+        : "none";
+
+  };
+
+
+  /* ==================================================
+     TROUBLE TYPE
+  ================================================== */
+
+  const isTroubleType = () => {
+
+    const type =
+      getRadioValue(
+        "inquiryType"
+      );
+
+    return (
+      type ===
+        "他のメンバーとのトラブル・相談" ||
+      type ===
+        "迷惑行為・ルール違反の報告"
+    );
+
+  };
+
+
+  const syncTroubleSection = () => {
+
+    if(isTroubleType()){
+
+      troubleSection.classList.add(
+        "active"
+      );
+
+    }else{
+
+      troubleSection.classList.remove(
+        "active"
+      );
+
+    }
+
+  };
+
+
+  document
+    .querySelectorAll(
+      'input[name="inquiryType"]'
+    )
+    .forEach(element => {
+
+      element.addEventListener(
+        "change",
+        syncTroubleSection
+      );
+
+    });
+
+
+  syncTroubleSection();
+
+
+  /* ==================================================
+     VALIDATION
+  ================================================== */
+
+  const validateAll = () => {
+
+    let valid = true;
+
+
+    [
+      "profile",
+      "inquiryType",
+      "content",
+      "urgency",
+      "replyRequired"
+    ].forEach(name => {
+
+      showError(
+        name,
+        false
+      );
+
+    });
+
+
+    if(
+      !form
+        .profileName
+        .value
+        .trim()
+    ){
+
+      showError(
+        "profile",
+        true
+      );
+
+      valid = false;
+
+    }
+
+
+    if(
+      !getRadioValue(
+        "inquiryType"
+      )
+    ){
+
+      showError(
+        "inquiryType",
+        true
+      );
+
+      valid = false;
+
+    }
+
+
+    if(
+      !form
+        .content
+        .value
+        .trim()
+    ){
+
+      showError(
+        "content",
+        true
+      );
+
+      valid = false;
+
+    }
+
+
+    if(
+      !getRadioValue(
+        "urgency"
+      )
+    ){
+
+      showError(
+        "urgency",
+        true
+      );
+
+      valid = false;
+
+    }
+
+
+    if(
+      !getRadioValue(
+        "replyRequired"
+      )
+    ){
+
+      showError(
+        "replyRequired",
+        true
+      );
+
+      valid = false;
+
+    }
+
+
+    return valid;
+
+  };
+
+
+  /* ==================================================
+     BUILD DATA
+  ================================================== */
+
+  const buildData = () => {
+
+    const trouble =
+      isTroubleType();
+
+
+    return {
+
+      form_type:
+        "FOCUS運営お問い合わせ",
+
+      profile_name:
+        form
+          .profileName
+          .value
+          .trim(),
+
+      inquiry_type:
+        getRadioValue(
+          "inquiryType"
+        ),
+
+      content:
+        form
+          .content
+          .value
+          .trim(),
+
+      related_member:
+        trouble
+          ? form
+              .relatedMember
+              .value
+              .trim()
+          : "",
+
+      incident_place:
+        trouble
+          ? form
+              .incidentPlace
+              .value
+              .trim()
+          : "",
+
+      evidence:
+        trouble
+          ? form
+              .evidence
+              .value
+              .trim()
+          : "",
+
+      desired_action:
+        form
+          .desiredAction
+          .value
+          .trim(),
+
+      urgency:
+        getRadioValue(
+          "urgency"
+        ),
+
+      reply_required:
+        getRadioValue(
+          "replyRequired"
+        ),
+
+      submitted_at:
+        new Date()
+          .toLocaleString(
+            "ja-JP",
+            {
+              timeZone:
+                "Asia/Tokyo"
+            }
+          ),
+
+      submission_id:
+        (
+          window.crypto &&
+          crypto.randomUUID
+        )
+          ? crypto.randomUUID()
+          : `${Date.now()}-${Math.random()
+              .toString(36)
+              .slice(2)}`
+
+    };
+
+  };
+
+
+  /* ==================================================
+     SEND TO CLOUDFLARE
+  ================================================== */
+
+  const sendToCloudflare =
+    async data => {
+
+
+      if(
+        !CONFIG.API_URL ||
+        CONFIG.API_URL ===
+          "YOUR_CLOUDFLARE_WORKER_URL"
+      ){
+
+        throw new Error(
+          "Cloudflare Worker URLが設定されていません。"
+        );
+
+      }
+
+
+      const response =
+        await fetch(
+          CONFIG.API_URL,
+          {
+
+            method:"POST",
+
+            headers:{
+              "Content-Type":
+                "application/json"
+            },
+
+            body:
+              JSON.stringify(
+                data
+              )
+
+          }
+        );
+
+
+      if(!response.ok){
+
+        let errorData = null;
+
+        try{
+
+          errorData =
+            await response.json();
+
+        }catch(error){
+
+          errorData = null;
+
+        }
+
+
+        throw new Error(
+          errorData &&
+          errorData.error
+            ? errorData.error
+            : "送信に失敗しました。"
+        );
+
+      }
+
+
+      let result = null;
+
+
+      try{
+
+        result =
+          await response.json();
+
+      }catch(error){
+
+        result = {
+          ok:true
+        };
+
+      }
+
+
+      if(
+        result &&
+        result.ok === false
+      ){
+
+        throw new Error(
+          result.error ||
+          "送信に失敗しました。"
+        );
+
+      }
+
+
+      return result;
+
+  };
+
+
+  /* ==================================================
+     THANK YOU
+  ================================================== */
+
+  const showThankYou = () => {
+
+    hero.style.display =
+      "none";
+
+    form.style.display =
+      "none";
+
+    thankYouStage.style.display =
+      "flex";
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"auto"
+    });
+
+  };
+
+
+  /* ==================================================
+     SUBMIT
+  ================================================== */
+
+  form.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+
+      if(isSubmitting){
+        return;
+      }
+
+
+      msg.textContent = "";
+
+
+      if(!validateAll()){
+
+        const firstError =
+          [
+            ...document
+              .querySelectorAll(
+                ".error"
+              )
+          ].find(
+            element =>
+              element.style.display ===
+              "block"
+          );
+
+
+        if(firstError){
+
+          firstError.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+          });
+
+        }
+
+
+        return;
+
+      }
+
+
+      const submitButton =
+        form.querySelector(
+          'button[type="submit"]'
+        );
+
+
+      isSubmitting = true;
+
+      submitButton.disabled =
+        true;
+
+      msg.textContent =
+        "運営へ送信しています…";
+
+
+      try{
+
+
+        const data =
+          buildData();
+
+
+        await sendToCloudflare(
+          data
+        );
+
+
+        msg.textContent =
+          "送信が完了しました。";
+
+
+        showThankYou();
+
+
+      }catch(error){
+
+
+        console.error(
+          error
+        );
+
+
+        msg.textContent =
+          "送信に失敗しました。通信環境をご確認のうえ、もう一度お試しください。";
+
+
+        alert(
+          "送信に失敗しました。もう一度送信ボタンを押してください。"
+        );
+
+
+      }finally{
+
+
+        if(
+          thankYouStage
+            .style
+            .display !==
+          "flex"
+        ){
+
+          submitButton.disabled =
+            false;
+
+          isSubmitting =
+            false;
+
+        }
+
+      }
+
+    }
+  );
+
+
+  /* ==================================================
+     CLEAR ERRORS
+  ================================================== */
+
+  const clearErrorOnInput = (
+    selector,
+    errorName
+  ) => {
+
+    document
+      .querySelectorAll(
+        selector
+      )
+      .forEach(element => {
+
+
+        const eventName =
+          element.type ===
+            "radio"
+            ? "change"
+            : "input";
+
+
+        element.addEventListener(
+          eventName,
+          () => {
+
+            showError(
+              errorName,
+              false
+            );
+
+          }
+        );
+
+      });
+
+  };
+
+
+  clearErrorOnInput(
+    "#profileName",
+    "profile"
+  );
+
+
+  clearErrorOnInput(
+    'input[name="inquiryType"]',
+    "inquiryType"
+  );
+
+
+  clearErrorOnInput(
+    "#content",
+    "content"
+  );
+
+
+  clearErrorOnInput(
+    'input[name="urgency"]',
+    "urgency"
+  );
+
+
+  clearErrorOnInput(
+    'input[name="replyRequired"]',
+    "replyRequired"
+  );
+
+
+})();
+
+</script>
+
+
+</body>
+</html>
