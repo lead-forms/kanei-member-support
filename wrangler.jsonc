@@ -1,0 +1,15 @@
+{
+  "name": "kanei-member-support",
+  "main": "worker.js",
+  "account_id": "2932c698c449f57fde1f4929f8cf7769",
+  "compatibility_date": "2026-08-29",
+  "workers_dev": true,
+  "keep_vars": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true
+    }
+  }
+}

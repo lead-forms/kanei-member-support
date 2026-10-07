@@ -803,6 +803,8 @@
     }
 
     input[type="text"],
+    input[type="email"],
+    input[type="file"],
     textarea{
       width:100%;
       max-width:100%;
@@ -1834,6 +1836,13 @@
           Discordのプロフィール名を入力してください。
         </div>
 
+        <div class="field" style="margin-top:18px">
+          <label class="inline-label" for="purchaseEmail">Teachable購入時のメールアドレス <span class="req">必須</span></label>
+          <div class="field-description">FOCUS・フリーダムともに、購入時に使用したメールアドレスをご入力ください。</div>
+          <input id="purchaseEmail" name="purchaseEmail" type="email" autocomplete="email" placeholder="例：name@example.com" maxlength="254" required />
+          <div class="error" data-error-for="purchaseEmail">購入時のメールアドレスを正しく入力してください。</div>
+        </div>
+
       </div>
 
 
@@ -2118,14 +2127,11 @@
             </label>
 
             <div class="field-description">
-              画像等がある場合は、確認できるURLや保存先などをご記入ください。ない場合は空欄で構いません。
+              写真ライブラリやファイルから画像を選択してください。最大4枚・合計8MBまで。ない場合は選択不要です。
             </div>
 
-            <textarea
-              id="evidence"
-              name="evidence"
-              placeholder="確認できるURLなどがあればご記入ください。"
-            ></textarea>
+            <input id="evidence" name="attachments" type="file" accept="image/*" multiple />
+            <div class="error" data-error-for="attachments">画像は最大4枚・合計8MBまで選択できます。画像以外のファイルは選択できません。</div>
 
           </div>
 
@@ -2499,6 +2505,8 @@
     [
       "service",
       "profile",
+      "purchaseEmail",
+      "attachments",
       "inquiryType",
       "content",
       "urgency",
@@ -2611,6 +2619,16 @@
     }
 
 
+    const email = form.purchaseEmail;
+    if(!email.value.trim() || !email.checkValidity()){
+      showError("purchaseEmail", true);
+      valid = false;
+    }
+    const images = isTroubleType() ? [...form.evidence.files] : [];
+    if(images.length > 4 || images.reduce((sum,file) => sum + file.size, 0) > 8 * 1024 * 1024 || images.some(file => !file.type.startsWith("image/") || !file.size)){
+      showError("attachments", true);
+      valid = false;
+    }
     return valid;
 
   };
@@ -2642,6 +2660,8 @@
           .value
           .trim(),
 
+      purchase_email: form.purchaseEmail.value.trim(),
+
       inquiry_type:
         getRadioValue(
           "inquiryType"
@@ -2669,13 +2689,7 @@
               .trim()
           : "",
 
-      evidence:
-        trouble
-          ? form
-              .evidence
-              .value
-              .trim()
-          : "",
+      evidence: "",
 
       desired_action:
         form
@@ -2739,6 +2753,14 @@
       }
 
 
+      const body = new FormData();
+      body.append("payload", JSON.stringify(data));
+      if(isTroubleType()){
+        for(const file of form.evidence.files){
+          body.append("attachments", file, file.name);
+        }
+      }
+
       const response =
         await fetch(
           CONFIG.API_URL,
@@ -2746,15 +2768,7 @@
 
             method:"POST",
 
-            headers:{
-              "Content-Type":
-                "application/json"
-            },
-
-            body:
-              JSON.stringify(
-                data
-              )
+            body
 
           }
         );
@@ -3027,6 +3041,9 @@
     "inquiryType"
   );
 
+
+  clearErrorOnInput("#purchaseEmail", "purchaseEmail");
+  form.evidence.addEventListener("change", () => showError("attachments", false));
 
   clearErrorOnInput(
     "#content",
