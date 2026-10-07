@@ -2117,6 +2117,15 @@
           </div>
 
 
+
+
+        </div>
+
+      </div>
+
+
+      <div class="section">
+        <div class="section-title">写真・画像の追加 <span class="optional">任意</span></div>
           <div class="field">
 
             <label
@@ -2134,11 +2143,7 @@
             <div class="error" data-error-for="attachments">画像は最大4枚・合計8MBまで選択できます。画像以外のファイルは選択できません。</div>
 
           </div>
-
-        </div>
-
       </div>
-
 
       <!-- ==================================================
            DESIRED ACTION
@@ -2624,7 +2629,7 @@
       showError("purchaseEmail", true);
       valid = false;
     }
-    const images = isTroubleType() ? [...form.evidence.files] : [];
+    const images = [...form.evidence.files];
     if(images.length > 4 || images.reduce((sum,file) => sum + file.size, 0) > 8 * 1024 * 1024 || images.some(file => !file.type.startsWith("image/") || !file.size)){
       showError("attachments", true);
       valid = false;
@@ -2755,10 +2760,8 @@
 
       const body = new FormData();
       body.append("payload", JSON.stringify(data));
-      if(isTroubleType()){
-        for(const file of form.evidence.files){
-          body.append("attachments", file, file.name);
-        }
+      for(const file of form.evidence.files){
+        body.append("attachments", file, file.name);
       }
 
       const response =
